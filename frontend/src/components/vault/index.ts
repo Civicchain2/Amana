@@ -5,3 +5,4 @@ export { ContractManifestCard } from "./ContractManifestCard";
 export { AuditLogCard } from "./AuditLogCard";
 export { NetworkBackboneCard } from "./NetworkBackboneCard";
 export { VaultFooter } from "./VaultFooter";
+export { VaultPage } from "./VaultPage";

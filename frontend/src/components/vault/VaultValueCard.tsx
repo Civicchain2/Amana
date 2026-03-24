@@ -22,7 +22,7 @@ export function VaultValueCard({
   }).format(value);
 
   return (
-    <BentoCard title="" icon={null} glowVariant="emerald">
+    <BentoCard title="" icon={null} glowVariant="emerald" className="h-full">
       <div className="flex flex-col h-full">
         <div className="flex items-center justify-between mb-2">
           <p className="text-xs font-semibold tracking-widest text-text-secondary uppercase">

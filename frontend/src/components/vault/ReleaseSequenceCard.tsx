@@ -57,7 +57,7 @@ export function ReleaseSequenceCard({
       title="Release Sequence"
       icon={<SettingsIcon className="w-5 h-5" />}
       glowVariant="gold"
-      className="lg:col-span-2"
+      className="h-full"
     >
       <div className="flex items-center justify-end mb-6">
         <span className="text-xs font-mono text-text-secondary bg-bg-elevated px-3 py-1 rounded-full border border-border-default">

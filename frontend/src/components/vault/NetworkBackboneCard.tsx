@@ -11,7 +11,7 @@ export function NetworkBackboneCard({ description }: NetworkBackboneCardProps) {
       title="Network Backbone"
       icon={<NetworkIcon className="w-5 h-5" />}
       glowVariant="gold"
-      className="lg:col-span-3"
+      className="h-full"
     >
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <p className="text-sm text-text-secondary max-w-xl leading-relaxed">
