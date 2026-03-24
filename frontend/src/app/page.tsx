@@ -1,65 +1,438 @@
-import Image from "next/image";
+import { BentoCard } from "@/components/ui/BentoCard";
+import {
+  Check,
+  Clock,
+  Flag,
+  FileText,
+  Shield,
+  Key,
+  Download,
+  Eye,
+  Fingerprint,
+  Radio,
+  Database,
+} from "lucide-react";
 
-export default function Home() {
+export default function VaultDashboard() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs font-sans text-display font-bold leading-tight tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen bg-bg-primary text-text-primary">
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-6 py-10">
+        {/* Header Section */}
+        <header className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-10">
+          <div>
+            <p className="text-xs font-semibold tracking-widest text-gold uppercase mb-2">
+              Vault System Active
+            </p>
+            <h1 className="text-4xl md:text-5xl font-bold text-text-primary">
+              Escrow #8492-AX
+            </h1>
+            <p className="text-3xl md:text-4xl font-light text-text-muted">
+              Institutional Custody
+            </p>
+          </div>
+
+          {/* Vault Status Card */}
+          <div className="flex items-center gap-4 bg-card border border-border-default rounded-2xl px-6 py-4">
+            <div className="w-14 h-14 rounded-xl bg-gold-muted flex items-center justify-center">
+              <Shield className="w-7 h-7 text-gold" />
+            </div>
+            <div>
+              <p className="text-xs font-medium tracking-widest text-text-secondary uppercase">
+                Vault Status
+              </p>
+              <p className="text-xl font-bold text-emerald">Funds Locked</p>
+              <div className="flex items-center gap-1.5 mt-1">
+                <Check className="w-4 h-4 text-emerald" />
+                <span className="text-xs font-medium text-emerald">
+                  Secured On-Chain
+                </span>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Release Sequence - Spans 2 columns */}
+          <BentoCard
+            title="Release Sequence"
+            icon={<Settings className="w-5 h-5" />}
+            glowVariant="gold"
+            className="lg:col-span-2"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <div className="flex items-center justify-end mb-6">
+              <span className="text-xs font-mono text-text-secondary bg-bg-elevated px-3 py-1 rounded-full border border-border-default">
+                SEQUENCE_ID: 882-AF
+              </span>
+            </div>
+
+            <div className="flex items-center justify-around">
+              {/* Agreement Step */}
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-16 h-16 rounded-full bg-emerald-muted border-2 border-emerald flex items-center justify-center">
+                  <Check className="w-7 h-7 text-emerald" />
+                </div>
+                <div className="text-center">
+                  <p className="text-sm font-semibold text-emerald uppercase tracking-wide">
+                    Agreement
+                  </p>
+                  <p className="text-xs text-text-secondary">Oct 12, 2023</p>
+                </div>
+              </div>
+
+              {/* Connector Line */}
+              <div className="w-16 h-0.5 bg-border-default" />
+
+              {/* Audit Phase Step */}
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-16 h-16 rounded-full bg-gold-muted border-2 border-gold flex items-center justify-center animate-pulse">
+                  <Clock className="w-7 h-7 text-gold" />
+                </div>
+                <div className="text-center">
+                  <p className="text-sm font-semibold text-gold uppercase tracking-wide">
+                    Audit Phase
+                  </p>
+                  <p className="text-xs text-text-secondary">Processing...</p>
+                </div>
+              </div>
+
+              {/* Connector Line */}
+              <div className="w-16 h-0.5 bg-border-default" />
+
+              {/* Final Release Step */}
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-16 h-16 rounded-full bg-bg-elevated border-2 border-border-default flex items-center justify-center">
+                  <Flag className="w-7 h-7 text-text-muted" />
+                </div>
+                <div className="text-center">
+                  <p className="text-sm font-semibold text-text-muted uppercase tracking-wide">
+                    Final Release
+                  </p>
+                  <p className="text-xs text-text-secondary">Est. Nov 04</p>
+                </div>
+              </div>
+            </div>
+          </BentoCard>
+
+          {/* Total Vault Value */}
+          <BentoCard title="" icon={null} glowVariant="emerald">
+            <div className="flex flex-col h-full">
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-xs font-semibold tracking-widest text-text-secondary uppercase">
+                  Total Vault Value
+                </p>
+                <div className="flex items-center gap-1 text-xs">
+                  <span className="text-text-secondary">USD</span>
+                  <span className="text-text-muted">/</span>
+                  <span className="text-text-muted">FIAT</span>
+                </div>
+              </div>
+
+              <p className="text-4xl font-bold text-text-primary mb-4">
+                $2,480,000<span className="text-text-muted">.00</span>
+              </p>
+
+              <div className="bg-emerald-muted rounded-lg p-4 mb-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Shield className="w-4 h-4 text-emerald" />
+                  <span className="text-sm font-semibold text-emerald">
+                    Fully Insured
+                  </span>
+                </div>
+                <p className="text-xs text-emerald leading-relaxed">
+                  Secured with multi-signature cold storage and 24/7 autonomous
+                  monitoring.
+                </p>
+              </div>
+
+              <button className="mt-auto w-full flex items-center justify-center gap-2 bg-gold hover:bg-gold-hover text-text-inverse font-semibold py-3 px-6 rounded-xl transition-colors">
+                <Key className="w-5 h-5" />
+                Release Funds
+              </button>
+            </div>
+          </BentoCard>
+
+          {/* Contract Manifest */}
+          <BentoCard
+            title="Contract Manifest"
+            icon={<FileText className="w-5 h-5" />}
+            glowVariant="none"
           >
-            Documentation
-          </a>
+            <div className="flex items-center justify-end -mt-8 mb-6">
+              <span className="text-xs font-mono text-gold bg-gold-muted px-3 py-1 rounded-full">
+                AMN-772-VLT-09
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6 mb-6">
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-text-secondary uppercase mb-1">
+                  Agreement Date
+                </p>
+                <p className="text-sm font-medium text-text-primary">
+                  September 24, 2023
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-text-secondary uppercase mb-1">
+                  Settlement Type
+                </p>
+                <p className="text-sm font-medium text-text-primary">
+                  Immediate / Fiat-Backed
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6 mb-6">
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-text-secondary uppercase mb-2">
+                  Origin Party
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-lg bg-teal text-text-inverse text-xs font-bold flex items-center justify-center">
+                    GB
+                  </span>
+                  <span className="text-sm text-text-primary">
+                    Global Biotech Inc.
+                  </span>
+                </div>
+              </div>
+              <div>
+                <p className="text-xs font-semibold tracking-widest text-text-secondary uppercase mb-2">
+                  Recipient Party
+                </p>
+                <div className="flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-lg bg-emerald text-text-inverse text-xs font-bold flex items-center justify-center">
+                    NS
+                  </span>
+                  <span className="text-sm text-text-primary">
+                    Nova Solutions Ltd.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-3 mt-auto">
+              <button className="flex-1 flex items-center justify-center gap-2 bg-bg-elevated hover:bg-bg-input border border-border-default text-text-primary font-medium py-2.5 px-4 rounded-xl transition-colors">
+                <Download className="w-4 h-4" />
+                Export PDF
+              </button>
+              <button className="flex-1 flex items-center justify-center gap-2 bg-bg-elevated hover:bg-bg-input border border-border-default text-text-primary font-medium py-2.5 px-4 rounded-xl transition-colors">
+                <Eye className="w-4 h-4" />
+                View Clauses
+              </button>
+            </div>
+          </BentoCard>
+
+          {/* Audit Log */}
+          <BentoCard
+            title="Audit Log"
+            icon={<Shield className="w-5 h-5" />}
+            glowVariant="emerald"
+          >
+            <div className="flex items-center justify-end -mt-8 mb-6">
+              <span className="flex items-center gap-1.5 text-xs font-semibold text-emerald bg-emerald-muted px-3 py-1 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-emerald animate-pulse" />
+                Live Sync
+              </span>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-emerald-muted flex items-center justify-center flex-shrink-0">
+                  <Fingerprint className="w-5 h-5 text-emerald" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-text-primary">
+                    Biometric validation passed
+                  </p>
+                  <p className="text-xs text-text-secondary">
+                    2m ago &bull; 192.168.1.44
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-gold-muted flex items-center justify-center flex-shrink-0">
+                  <Radio className="w-5 h-5 text-gold" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-text-primary">
+                    Multi-sig request broadcast
+                  </p>
+                  <p className="text-xs text-text-secondary">
+                    1h ago &bull; ID: 494022
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center flex-shrink-0">
+                  <Database className="w-5 h-5 text-text-secondary" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-text-primary">
+                    Ledger synchronization
+                  </p>
+                  <p className="text-xs text-text-secondary">
+                    Yesterday &bull; Block 182,990
+                  </p>
+                </div>
+              </div>
+            </div>
+          </BentoCard>
+
+          {/* Network Backbone - Full Width */}
+          <BentoCard
+            title="Network Backbone"
+            icon={<NetworkIcon className="w-5 h-5" />}
+            glowVariant="gold"
+            className="lg:col-span-3"
+          >
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <p className="text-sm text-text-secondary max-w-xl leading-relaxed">
+                Secured and powered by the Stellar network for instantaneous
+                cross-border settlement and verifiable transparency.
+              </p>
+              <div className="flex items-center gap-2">
+                <StellarLogo className="h-8 text-text-secondary" />
+              </div>
+            </div>
+          </BentoCard>
         </div>
+
+        {/* Footer */}
+        <footer className="mt-16 pt-8 border-t border-border-default">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 text-xs text-text-secondary mb-2">
+                <Check className="w-4 h-4" />
+                <span>Amana Digital Custody Systems V4.8.2</span>
+              </div>
+              <div className="flex items-center gap-6 text-xs text-text-secondary">
+                <a href="#" className="hover:text-text-primary transition-colors">
+                  Privacy Protocol
+                </a>
+                <a href="#" className="hover:text-text-primary transition-colors">
+                  Compliance
+                </a>
+                <a href="#" className="hover:text-text-primary transition-colors">
+                  Audit Report
+                </a>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs text-gold uppercase tracking-widest mb-3">
+                Connect With Us
+              </p>
+              <div className="flex items-center gap-3">
+                <a
+                  href="#"
+                  className="w-10 h-10 rounded-full bg-bg-elevated border border-border-default flex items-center justify-center hover:border-border-hover transition-colors"
+                >
+                  <XIcon className="w-4 h-4 text-text-primary" />
+                </a>
+                <a
+                  href="#"
+                  className="w-10 h-10 rounded-full bg-bg-elevated border border-border-default flex items-center justify-center hover:border-border-hover transition-colors"
+                >
+                  <InstagramIcon className="w-4 h-4 text-text-primary" />
+                </a>
+                <a
+                  href="#"
+                  className="w-10 h-10 rounded-full bg-bg-elevated border border-border-default flex items-center justify-center hover:border-border-hover transition-colors"
+                >
+                  <TiktokIcon className="w-4 h-4 text-text-primary" />
+                </a>
+                <a
+                  href="#"
+                  className="w-10 h-10 rounded-full bg-bg-elevated border border-border-default flex items-center justify-center hover:border-border-hover transition-colors"
+                >
+                  <DiscordIcon className="w-4 h-4 text-text-primary" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
     </div>
+  );
+}
+
+// Custom Icons
+function Settings({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+    </svg>
+  );
+}
+
+function NetworkIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <circle cx="12" cy="5" r="2" />
+      <circle cx="5" cy="19" r="2" />
+      <circle cx="19" cy="19" r="2" />
+      <path d="M12 7v4M7.5 17.5L10.5 13M16.5 17.5L13.5 13" />
+      <circle cx="12" cy="12" r="2" />
+    </svg>
+  );
+}
+
+function StellarLogo({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 200 40" fill="currentColor">
+      <path d="M45 20c0-8.284 6.716-15 15-15 6.213 0 11.544 3.78 13.816 9.167l-4.472 2.236A10.003 10.003 0 0060 10c-5.523 0-10 4.477-10 10s4.477 10 10 10a10.003 10.003 0 009.344-6.403l4.472 2.236C71.544 31.22 66.213 35 60 35c-8.284 0-15-6.716-15-15z" />
+      <text x="80" y="27" fontSize="20" fontWeight="600" fill="currentColor">
+        Stellar
+      </text>
+    </svg>
+  );
+}
+
+function XIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+    </svg>
+  );
+}
+
+function TiktokIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+    </svg>
+  );
+}
+
+function DiscordIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z" />
+    </svg>
   );
 }
