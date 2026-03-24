@@ -1,64 +1,134 @@
-import Image from "next/image";
+import {
+  VaultHeader,
+  ReleaseSequenceCard,
+  VaultValueCard,
+  ContractManifestCard,
+  AuditLogCard,
+  NetworkBackboneCard,
+  VaultFooter,
+} from "@/components/vault";
 
-export default function Home() {
+// Mock data - in production, this would come from an API or database
+const VAULT_DATA = {
+  escrowId: "8492-AX",
+  custodyType: "Institutional Custody",
+  status: "Funds Locked",
+  isSecured: true,
+  sequenceId: "882-AF",
+  steps: [
+    { label: "Agreement", date: "Oct 12, 2023", status: "completed" as const },
+    { label: "Audit Phase", date: "Processing...", status: "in-progress" as const },
+    { label: "Final Release", date: "Est. Nov 04", status: "pending" as const },
+  ],
+  vaultValue: 2480000,
+  currency: "USD",
+  isInsured: true,
+  contract: {
+    id: "AMN-772-VLT-09",
+    agreementDate: "September 24, 2023",
+    settlementType: "Immediate / Fiat-Backed",
+    originParty: {
+      initials: "GB",
+      name: "Global Biotech Inc.",
+      color: "teal" as const,
+    },
+    recipientParty: {
+      initials: "NS",
+      name: "Nova Solutions Ltd.",
+      color: "emerald" as const,
+    },
+  },
+  auditLog: [
+    {
+      type: "biometric" as const,
+      title: "Biometric validation passed",
+      metadata: "2m ago \u2022 192.168.1.44",
+    },
+    {
+      type: "multi-sig" as const,
+      title: "Multi-sig request broadcast",
+      metadata: "1h ago \u2022 ID: 494022",
+    },
+    {
+      type: "ledger" as const,
+      title: "Ledger synchronization",
+      metadata: "Yesterday \u2022 Block 182,990",
+    },
+  ],
+  networkDescription:
+    "Secured and powered by the Stellar network for instantaneous cross-border settlement and verifiable transparency.",
+  footer: {
+    version: "V4.8.2",
+    links: [
+      { label: "Privacy Protocol", href: "#" },
+      { label: "Compliance", href: "#" },
+      { label: "Audit Report", href: "#" },
+    ],
+    socialLinks: [
+      { platform: "x" as const, href: "#" },
+      { platform: "instagram" as const, href: "#" },
+      { platform: "tiktok" as const, href: "#" },
+      { platform: "discord" as const, href: "#" },
+    ],
+  },
+};
+
+export default function VaultDashboard() {
+  const handleReleaseFunds = () => {
+    // Handle release funds action
+  };
+
+  const handleExportPdf = () => {
+    // Handle PDF export
+  };
+
+  const handleViewClauses = () => {
+    // Handle view clauses
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="min-h-screen bg-bg-primary text-text-primary">
+      <main className="max-w-7xl mx-auto px-6 py-10">
+        <VaultHeader
+          escrowId={VAULT_DATA.escrowId}
+          custodyType={VAULT_DATA.custodyType}
+          status={VAULT_DATA.status}
+          isSecured={VAULT_DATA.isSecured}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs font-sans text-display font-bold leading-tight tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <ReleaseSequenceCard
+            sequenceId={VAULT_DATA.sequenceId}
+            steps={VAULT_DATA.steps}
+          />
+
+          <VaultValueCard
+            value={VAULT_DATA.vaultValue}
+            currency={VAULT_DATA.currency}
+            isInsured={VAULT_DATA.isInsured}
+            onReleaseFunds={handleReleaseFunds}
+          />
+
+          <ContractManifestCard
+            contractId={VAULT_DATA.contract.id}
+            agreementDate={VAULT_DATA.contract.agreementDate}
+            settlementType={VAULT_DATA.contract.settlementType}
+            originParty={VAULT_DATA.contract.originParty}
+            recipientParty={VAULT_DATA.contract.recipientParty}
+            onExportPdf={handleExportPdf}
+            onViewClauses={handleViewClauses}
+          />
+
+          <AuditLogCard entries={VAULT_DATA.auditLog} isLiveSync />
+
+          <NetworkBackboneCard description={VAULT_DATA.networkDescription} />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <VaultFooter
+          version={VAULT_DATA.footer.version}
+          links={VAULT_DATA.footer.links}
+          socialLinks={VAULT_DATA.footer.socialLinks}
+        />
       </main>
     </div>
   );
