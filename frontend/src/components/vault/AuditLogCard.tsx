@@ -33,6 +33,7 @@ export function AuditLogCard({ entries, isLiveSync = true }: AuditLogCardProps) 
       title="Audit Log"
       icon={<Shield className="w-5 h-5" />}
       glowVariant="emerald"
+      className="h-full"
     >
       <div className="flex items-center justify-end -mt-8 mb-6">
         {isLiveSync && (
